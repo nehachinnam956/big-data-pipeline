@@ -37,13 +37,13 @@ An end-to-end data engineering pipeline built on AWS — processing 119,140 real
 ![Airflow Tasks](images/Screenshot_2026-07-10_041743.png)
 
 ### ☁️ AWS EMR Cluster — olist-pipeline-2 (Summary)
-![EMR Cluster](images/Screenshot_2026-07-10_045908.png)
+![EMR Cluster](images/Screenshot%202026-07-10%20045908.png)
 
 ### ⚡ AWS EMR — Completed Steps (olist-etl-scheduled + olist-etl-v7)
-![EMR Steps](images/Screenshot_2026-07-10_045928.png)
+![EMR Steps](images/Screenshot%202026-07-10%20045928.png)
 
 ### 🗄️ AWS S3 — Silver Layer (Parquet partitioned by year)
-![S3 Silver Layer](images/Screenshot_2026-07-10_050111.png)
+![S3 Silver Layer](images/Screenshot%202026-07-10%20050111.png)
 
 ---
 
