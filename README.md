@@ -19,34 +19,34 @@ An end-to-end data engineering pipeline built on AWS — processing 119,140 real
 ## 📸 Screenshots
 
 ### 🖥️ Streamlit Dashboard — Key Metrics
-![Dashboard KPIs](images/Screenshot_2026-07-10_022043.png)
+![Dashboard KPIs](images/Screenshot%202026-07-10%20022043.png)
 
 ### 📈 Monthly Revenue & Order Volume
-![Revenue Charts](images/Screenshot_2026-07-10_022056.png)
+![Revenue Charts](images/Screenshot%202026-07-10%20022056.png)
 
 ### 🚨 Late Shipments Over Time & Late Rate %
-![Late Shipment Charts](images/Screenshot_2026-07-10_022117.png)
+![Late Shipment Charts](images/Screenshot%202026-07-10%20022117.png)
 
 ### 📋 Monthly Data Table
-![Data Table](images/Screenshot_2026-07-10_022126.png)
+![Data Table](images/Screenshot%202026-07-10%20022126.png)
 
 ### ✅ Apache Airflow — All 4 Tasks Successful
-![Airflow All Green](images/Screenshot_2026-07-10_041721.png)
+![Airflow All Green](images/Screenshot%202026-07-10%20041721.png)
 
 ### 📋 Airflow — Task Instances (All Success)
-![Airflow Tasks](images/Screenshot_2026-07-10_041743.png)
+![Airflow Tasks](images/Screenshot%202026-07-10%20041743.png)
 
 ### 🔍 Airflow — EMR Job Submitted & Completed Logs
-![Airflow EMR Logs](images/Screenshot_2026-07-10_041855.png)
+![Airflow EMR Logs](images/Screenshot%202026-07-10%20041855.png)
 
-### ⚡ Airflow — S3 Bronze Layer Check Logs
-![Airflow S3 Logs](images/Screenshot_2026-07-10_041925.png)
+### 🔍 Airflow — S3 Bronze Layer Check Logs
+![Airflow S3 Logs](images/Screenshot%202026-07-10%20041925.png)
 
-### ☁️ AWS EMR Cluster — olist-pipeline-2 (Waiting)
-![EMR Cluster](images/Screenshot_2026-07-10_033714.png)
+### ☁️ AWS EMR Cluster — olist-pipeline-2
+![EMR Cluster](images/Screenshot%202026-07-10%20033714.png)
 
-### ✅ AWS EMR — Completed Steps
-![EMR Steps](images/Screenshot_2026-07-10_035038.png)
+### ⚡ AWS EMR — Completed Steps
+![EMR Steps](images/Screenshot%202026-07-10%20035038.png)
 
 ---
 
@@ -106,6 +106,7 @@ Raw CSVs (9 files, 119K+ orders — Olist 2016–2018)
 ├── olist_pipeline_dag.py       # Apache Airflow DAG (daily orchestration)
 ├── dashboard.py                # Streamlit analytics dashboard
 ├── olist_results.csv           # Athena query results (monthly aggregates)
+├── images/                     # Project screenshots
 └── README.md
 ```
 
@@ -153,8 +154,6 @@ Partitioning reduces Athena query scan cost by ~60%.
 
 ### 4. Apache Airflow — Daily Orchestration
 
-4-task DAG runs every day at midnight automatically:
-
 ```python
 # Task dependencies — runs in sequence
 check_s3_bronze_layer >> submit_pyspark_job_to_emr >> refresh_athena_partitions >> check_late_shipment_threshold
@@ -188,10 +187,10 @@ pip install pyspark boto3 streamlit plotly pandas apache-airflow apache-airflow-
 aws configure  # Enter AWS credentials and region (eu-north-1)
 ```
 
-### Run PySpark Job (requires EMR cluster)
+### Run PySpark Job
 ```bash
 aws s3 cp transform.py s3://your-bucket/scripts/transform.py
-# Submit as EMR Step via AWS Console → Spark application
+# Submit as EMR Step via AWS Console
 ```
 
 ### Run Airflow DAG
@@ -199,8 +198,7 @@ aws s3 cp transform.py s3://your-bucket/scripts/transform.py
 export AIRFLOW_HOME=~/airflow
 airflow db migrate
 airflow standalone
-# Open http://localhost:8080
-# Trigger olist_ecommerce_pipeline DAG
+# Open http://localhost:8080 → Trigger olist_ecommerce_pipeline
 ```
 
 ### Run Dashboard
@@ -212,13 +210,12 @@ streamlit run dashboard.py
 
 ## 💰 AWS Cost
 
-Total cost: **< $1.00** (from AWS credits)
-
 | Service | Cost |
 |---|---|
 | AWS S3 | ~$0.00 (free tier) |
 | AWS EMR (2 runs × 15 min) | ~$0.50 |
 | AWS Athena | ~$0.01 |
+| **Total** | **< $1.00** |
 
 ---
 
@@ -229,5 +226,5 @@ B.Tech, Computer Science & Engineering (Big Data & Analytics) | SRM University A
 
 - GitHub: [github.com/nehachinnam956](https://github.com/nehachinnam956)
 - LinkedIn: [linkedin.com/in/bhagavathi-neha-bba319291](https://www.linkedin.com/in/bhagavathi-neha-bba319291)
-- Portfolio: [nehachinnam956.github.io/nehachinnam-portfolio](https://nehachinnam956.github.io/nehachinnam956.github.io)
+- Portfolio: [nehachinnam956.github.io/nehachinnam-portfolio](https://nehachinnam956.github.io/nehachinnam-portfolio/)
 - LeetCode: [leetcode.com/u/NehaChinnam](https://leetcode.com/u/NehaChinnam/)
