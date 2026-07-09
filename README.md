@@ -19,31 +19,31 @@ An end-to-end data engineering pipeline built on AWS — processing 119,140 real
 ## 📸 Screenshots
 
 ### 🖥️ Streamlit Dashboard — Key Metrics
-![Dashboard KPIs](images/Screenshot%202026-07-10%20022043.png)
+![Dashboard KPIs](images/Screenshot_2026-07-10_022043.png)
 
 ### 📈 Monthly Revenue & Order Volume
-![Revenue Charts](images/Screenshot%202026-07-10%20022056.png)
+![Revenue Charts](images/Screenshot_2026-07-10_022056.png)
 
 ### 🚨 Late Shipments Over Time & Late Rate %
-![Late Shipment Charts](images/Screenshot%202026-07-10%20022117.png)
+![Late Shipment Charts](images/Screenshot_2026-07-10_022117.png)
 
 ### 📋 Monthly Data Table
-![Data Table](images/Screenshot%202026-07-10%20022126.png)
+![Data Table](images/Screenshot_2026-07-10_022126.png)
 
 ### ✅ Apache Airflow — All 4 Tasks Successful
-![Airflow All Green](images/Screenshot%202026-07-10%20041721.png)
+![Airflow All Green](images/Screenshot_2026-07-10_041721.png)
 
 ### 📋 Airflow — Task Instances (All Success)
-![Airflow Tasks](images/Screenshot%202026-07-10%20041743.png)
+![Airflow Tasks](images/Screenshot_2026-07-10_041743.png)
 
 ### ☁️ AWS EMR Cluster — olist-pipeline-2 (Summary)
-![EMR Cluster](images/Screenshot%202026-07-10%20045908.png)
+![EMR Cluster](images/Screenshot_2026-07-10_045908.png)
 
 ### ⚡ AWS EMR — Completed Steps (olist-etl-scheduled + olist-etl-v7)
-![EMR Steps](images/Screenshot%202026-07-10%20045928.png)
+![EMR Steps](images/Screenshot_2026-07-10_045928.png)
 
 ### 🗄️ AWS S3 — Silver Layer (Parquet partitioned by year)
-![S3 Silver Layer](images/Screenshot%202026-07-10%20050111.png)
+![S3 Silver Layer](images/Screenshot_2026-07-10_050111.png)
 
 ---
 
