@@ -36,17 +36,14 @@ An end-to-end data engineering pipeline built on AWS — processing 119,140 real
 ### 📋 Airflow — Task Instances (All Success)
 ![Airflow Tasks](images/Screenshot%202026-07-10%20041743.png)
 
-### 🔍 Airflow — EMR Job Submitted & Completed Logs
-![Airflow EMR Logs](images/Screenshot%202026-07-10%20041855.png)
+### ☁️ AWS EMR Cluster — olist-pipeline-2 (Summary)
+![EMR Cluster](images/Screenshot%202026-07-10%20045908.png)
 
-### 🔍 Airflow — S3 Bronze Layer Check Logs
-![Airflow S3 Logs](images/Screenshot%202026-07-10%20041925.png)
+### ⚡ AWS EMR — Completed Steps (olist-etl-scheduled + olist-etl-v7)
+![EMR Steps](images/Screenshot%202026-07-10%20045928.png)
 
-### ☁️ AWS EMR Cluster — olist-pipeline-2
-![EMR Cluster](images/Screenshot%202026-07-10%20033714.png)
-
-### ⚡ AWS EMR — Completed Steps
-![EMR Steps](images/Screenshot%202026-07-10%20035038.png)
+### 🗄️ AWS S3 — Silver Layer (Parquet partitioned by year)
+![S3 Silver Layer](images/Screenshot%202026-07-10%20050111.png)
 
 ---
 
