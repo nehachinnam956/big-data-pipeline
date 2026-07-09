@@ -16,6 +16,40 @@ An end-to-end data engineering pipeline built on AWS — processing 119,140 real
 
 ---
 
+## 📸 Screenshots
+
+### 🖥️ Streamlit Dashboard — Key Metrics
+![Dashboard KPIs](Screenshot_2026-07-10_022043.png)
+
+### 📈 Monthly Revenue & Order Volume
+![Revenue Charts](Screenshot_2026-07-10_022056.png)
+
+### 🚨 Late Shipments Over Time & Late Rate %
+![Late Shipment Charts](Screenshot_2026-07-10_022117.png)
+
+### 📋 Monthly Data Table
+![Data Table](Screenshot_2026-07-10_022126.png)
+
+### ✅ Apache Airflow — All 4 Tasks Successful
+![Airflow All Green](Screenshot_2026-07-10_041721.png)
+
+### 📋 Airflow — Task Instances (All Success)
+![Airflow Tasks](Screenshot_2026-07-10_041743.png)
+
+### 🔍 Airflow — EMR Job Submitted & Completed Logs
+![Airflow EMR Logs](Screenshot_2026-07-10_041855.png)
+
+### ⚡ Airflow — S3 Bronze Layer Check Logs
+![Airflow S3 Logs](Screenshot_2026-07-10_041925.png)
+
+### ☁️ AWS EMR Cluster — olist-pipeline-2 (Waiting)
+![EMR Cluster](Screenshot_2026-07-10_033714.png)
+
+### ✅ AWS EMR — Completed Steps
+![EMR Steps](Screenshot_2026-07-10_035038.png)
+
+---
+
 ## 🏗️ Architecture
 
 ```
@@ -122,7 +156,7 @@ Partitioning reduces Athena query scan cost by ~60%.
 4-task DAG runs every day at midnight automatically:
 
 ```python
-# Task dependencies
+# Task dependencies — runs in sequence
 check_s3_bronze_layer >> submit_pyspark_job_to_emr >> refresh_athena_partitions >> check_late_shipment_threshold
 ```
 
@@ -195,5 +229,5 @@ B.Tech, Computer Science & Engineering (Big Data & Analytics) | SRM University A
 
 - GitHub: [github.com/nehachinnam956](https://github.com/nehachinnam956)
 - LinkedIn: [linkedin.com/in/bhagavathi-neha-bba319291](https://www.linkedin.com/in/bhagavathi-neha-bba319291)
-- Portfolio: [nehachinnam956.github.io/nehachinnam-portfolio](https://nehachinnam956.github.io/nehachinnam-portfolio/)
+- Portfolio: [nehachinnam956.github.io/nehachinnam-portfolio](https://nehachinnam956.github.io/nehachinnam956.github.io)
 - LeetCode: [leetcode.com/u/NehaChinnam](https://leetcode.com/u/NehaChinnam/)
