@@ -22,19 +22,19 @@ An end-to-end data engineering pipeline built on AWS — processing 119,140 real
 ![Dashboard KPIs](images/Screenshot 2026-07-10 022043.png)
 
 ### 📈 Monthly Revenue & Order Volume
-![Revenue Charts](images/Screenshot_2026-07-10_022056.png)
+![Revenue Charts](images/Screenshot 2026-07-10 022056.png)
 
 ### 🚨 Late Shipments Over Time & Late Rate %
-![Late Shipment Charts](images/Screenshot_2026-07-10_022117.png)
+![Late Shipment Charts](images/Screenshot%202026-07-10%20022117.png)
 
 ### 📋 Monthly Data Table
-![Data Table](images/Screenshot_2026-07-10_022126.png)
+![Data Table](images/Screenshot%202026-07-10%20022126.png)
 
 ### ✅ Apache Airflow — All 4 Tasks Successful
-![Airflow All Green](images/Screenshot_2026-07-10_041721.png)
+![Airflow All Green](images/Screenshot%202026-07-10%20041721.png)
 
 ### 📋 Airflow — Task Instances (All Success)
-![Airflow Tasks](images/Screenshot_2026-07-10_041743.png)
+![Airflow Tasks](images/Screenshot%202026-07-10%20041743.png)
 
 ### ☁️ AWS EMR Cluster — olist-pipeline-2 (Summary)
 ![EMR Cluster](images/Screenshot%202026-07-10%20045908.png)
