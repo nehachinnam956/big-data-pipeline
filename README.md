@@ -19,7 +19,7 @@ An end-to-end data engineering pipeline built on AWS — processing 119,140 real
 ## 📸 Screenshots
 
 ### 🖥️ Streamlit Dashboard — Key Metrics
-![Dashboard KPIs](images/Screenshot_2026-07-10_022043.png)
+![Dashboard KPIs](images/Screenshot 2026-07-10 022043.png)
 
 ### 📈 Monthly Revenue & Order Volume
 ![Revenue Charts](images/Screenshot_2026-07-10_022056.png)
