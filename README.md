@@ -1,6 +1,6 @@
 # 🛒 Brazilian E-Commerce Analytics Pipeline
 
-An end-to-end data engineering pipeline built on AWS — processing 119,140 real e-commerce orders from the Olist Brazilian E-Commerce dataset using PySpark, AWS EMR, AWS Athena, and Streamlit.
+An end-to-end data engineering pipeline built on AWS — processing 119,140 real e-commerce orders from the Olist Brazilian E-Commerce dataset using PySpark, AWS EMR, AWS Athena, Apache Airflow, and Streamlit.
 
 ---
 
@@ -33,6 +33,12 @@ Raw CSVs (9 files, 119K+ orders — Olist 2016–2018)
                     ↓
    AWS Athena — Serverless SQL Analytics
                     ↓
+   Apache Airflow — Daily Orchestration (4-task DAG)
+   • check_s3_bronze_layer
+   • submit_pyspark_job_to_emr
+   • refresh_athena_partitions
+   • check_late_shipment_threshold
+                    ↓
      Streamlit Dashboard — Live Visualizations
 ```
 
@@ -45,6 +51,7 @@ Raw CSVs (9 files, 119K+ orders — Olist 2016–2018)
 | Data Lake Storage | AWS S3 (Bronze + Silver layers) |
 | Distributed Processing | PySpark on AWS EMR (Spark 4.0.2) |
 | Serverless SQL | AWS Athena |
+| Pipeline Orchestration | Apache Airflow 3.3.0 (daily DAG) |
 | Visualization | Streamlit + Plotly |
 | Language | Python 3 |
 | Infrastructure | AWS (S3, EMR, Athena, IAM, CloudWatch) |
@@ -61,9 +68,10 @@ Raw CSVs (9 files, 119K+ orders — Olist 2016–2018)
 ## 📂 Project Structure
 
 ```
-├── transform.py          # PySpark ETL job (runs on AWS EMR)
-├── dashboard.py          # Streamlit analytics dashboard
-├── olist_results.csv     # Athena query results (monthly aggregates)
+├── transform.py                # PySpark ETL job (runs on AWS EMR)
+├── olist_pipeline_dag.py       # Apache Airflow DAG (daily orchestration)
+├── dashboard.py                # Streamlit analytics dashboard
+├── olist_results.csv           # Athena query results (monthly aggregates)
 └── README.md
 ```
 
@@ -107,9 +115,23 @@ GROUP BY order_year, order_month
 ORDER BY order_year, order_month;
 ```
 
-Partitioning reduces Athena query scan cost by ~60% — only relevant partitions are scanned per query.
+Partitioning reduces Athena query scan cost by ~60%.
 
-### 4. Streamlit Dashboard
+### 4. Apache Airflow — Daily Orchestration
+
+4-task DAG runs every day at midnight automatically:
+
+```python
+# Task dependencies
+check_s3_bronze_layer >> submit_pyspark_job_to_emr >> refresh_athena_partitions >> check_late_shipment_threshold
+```
+
+- **Task 1** — Validates 9 CSV files exist in S3 Bronze layer
+- **Task 2** — Submits PySpark job to AWS EMR and waits for completion
+- **Task 3** — Runs `MSCK REPAIR TABLE` to refresh Athena partitions
+- **Task 4** — Alerts if late shipment rate exceeds 10% threshold
+
+### 5. Streamlit Dashboard
 4 interactive visualizations: Monthly Revenue Trend, Monthly Order Volume, Late Shipments Over Time, Late Shipment Rate %.
 
 ---
@@ -118,9 +140,9 @@ Partitioning reduces Athena query scan cost by ~60% — only relevant partitions
 
 **Growth Story:** Olist grew from 4 orders (Sep 2016) to 9,191 orders (Nov 2017) — a 2,297x increase in 14 months.
 
-**Late Shipment Crisis:** March 2018 had a 17.4% late rate — 1 in 6 customers received orders late. February 2018 also had 1,084 late shipments. This is exactly the kind of operational signal this pipeline is designed to surface early.
+**Late Shipment Crisis:** March 2018 had a 17.4% late rate — 1 in 6 customers received orders after the estimated delivery date. The Airflow DAG automatically alerts when this exceeds 10%.
 
-**Black Friday Effect:** November 2017 was the single largest month — 9,191 orders, $1.61M revenue — nearly double October. Late shipments spiked to 1,051 (11.4%) showing logistics strain from seasonal demand.
+**Black Friday Effect:** November 2017 was the single largest month — 9,191 orders, $1.61M revenue — nearly double October. Late shipments spiked to 1,051 (11.4%).
 
 ---
 
@@ -128,14 +150,23 @@ Partitioning reduces Athena query scan cost by ~60% — only relevant partitions
 
 ### Prerequisites
 ```bash
-pip install pyspark boto3 streamlit plotly pandas
-aws configure  # Enter your AWS credentials and region
+pip install pyspark boto3 streamlit plotly pandas apache-airflow apache-airflow-providers-amazon
+aws configure  # Enter AWS credentials and region (eu-north-1)
 ```
 
 ### Run PySpark Job (requires EMR cluster)
 ```bash
 aws s3 cp transform.py s3://your-bucket/scripts/transform.py
 # Submit as EMR Step via AWS Console → Spark application
+```
+
+### Run Airflow DAG
+```bash
+export AIRFLOW_HOME=~/airflow
+airflow db migrate
+airflow standalone
+# Open http://localhost:8080
+# Trigger olist_ecommerce_pipeline DAG
 ```
 
 ### Run Dashboard
@@ -159,7 +190,7 @@ Total cost: **< $1.00** (from AWS credits)
 
 ## 👩‍💻 Author
 
-**Bhagavathi Neha Chinnam**  
+**Bhagavathi Neha Chinnam**
 B.Tech, Computer Science & Engineering (Big Data & Analytics) | SRM University AP
 
 - GitHub: [github.com/nehachinnam956](https://github.com/nehachinnam956)
